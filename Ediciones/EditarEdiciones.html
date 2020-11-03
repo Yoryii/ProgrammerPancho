@@ -12,33 +12,35 @@
 
         <main>
             <section>
-                <h1>EDITAR PROBLEMAS</h1>
+                <h1>EDITAR EDICIONES</h1>
                 <form>
                 <div id="datosproblema">
                     <fieldset>
-                        <legend>Datos del Problema</legend>
+                        <legend>Datos de la Edicion</legend>
                        
-                           <label>IdProblema:</label>
+                           <label>IdEdicion:</label>
                            <input type="number" name="IdProblema" required> 
                            <br>
                            <label>Nombre:</label>
                            <input type="text" name="nombre" required>
                            <br>
-                           <label>Puntos:</label>
-                           <input type="number" name="puntos" required>
+                           <label>Fecha Registro:</label>
+                           <input type="date" name="fechar" required>
                            <br>
-                           <label>Tiempo Maximo:</label>
-                           <input type="number" name="tiempoMax" required>
+                           <label>Fecha Evento:</label>
+                           <input type="date" name="fechae" required>
                            <br>
-                           <label>Descripción</label>
-                           <input type="text" name="descripcion">
+                           <label>Hora Inicio</label>
+                           <input type="time" name="horai">
+                           <label>Hora Fin</label>
+                           <input type="time" name="horaf">
                            <br>
 
                         <button>Cancelar</button>
                         <button>Guardar</button>
                     </fieldset>
                 </form>
-                <a href="../Problemas/ConsultaProblemas.html">Regresar</a>
+                <a href="../Ediciones/ConsultaEdiciones.html">Regresar</a>
             </section>
         </main>
         <footer>
