@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="es">
     <head>
+        <link rel="stylesheet" href="../plantilla/bootstrap.min.css">
+        <script src="../bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
         <meta charset="UTF-8">
         <title>ProgrammerPancho</title>
     </head>
@@ -8,21 +10,6 @@
         <header>
             INSTITUTO TECNOLOGICO DE ESTUDIOS SUPERIORES DE ZAMORA
         </header>
-        <nav>
-        <p>Menú</p>
-        <ul>
-            <li>Usuarios</li>
-            <li>Docentes</li>
-            <li>Carreras</li>
-            <li><a href="../Alumnos/consultaAlumnos.html">Alumnos</a></li>
-            <li><a href="../Equipos/consultaEquipos.html">Equipos</a></li>
-            <li><a href="./consultaCategorias.html">Categorías</a></li>
-            <li>Problemas</li>
-            <li>Problemas resueltos</li>
-            <li>Problemas a publicar</li>
-            <li>Ediciones</li>
-        </ul>
-        </nav>
         <main>
             <section>
                 <h1>REGISTRO DE CATEGORIAS</h1>
@@ -41,12 +28,11 @@
                            <label>Nombre:</label>
                            <input type="text" name="nombre" required>
                            <br>
-                        <button>Atras</button>
                         <button>Cancelar</button>
                         <button>Guardar</button>
                     </fieldset>
                 </form>
-                <a href="./consultaCategorias.html">Regresar</a>
+                <a href="javascript: history.go(-1)">Regresar</a>
             </section>
         </main>
         <footer>
