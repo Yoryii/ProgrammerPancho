@@ -1,11 +1,29 @@
 <!doctype html>
 <html lang="es">
 <head>
+    <link rel="stylesheet" href="../plantilla/bootstrap.min.css">
+    <script src="../bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
     <meta charset="UTF-8">
     <title>Equipo</title>
 </head>
-<body>
+<nav>
     <h1>Equipos</h1>
+    <p>Menú</p>
+    <ul>
+        <li>Usuarios</li>
+        <li>Docentes</li>
+        <li>Carreras</li>
+        <li><a href="../Alumnos/consultaAlumnos.html">Alumnos</a></li>
+        <li><a href="../Equipos/consultaEquipos.html">Equipos</a></li>
+        <li><a href="../Categorias/consultaCategorias.html">Categorías</a></li>
+        <li><a href="../Problemas/ConsultaProblemas.html">Problemas</a></li>
+        <li>Problemas resueltos</li>
+        <li>Problemas a publicar</li>
+        <li>Ediciones</li>
+    </ul>
+</nav>
+<body>
+    <p>Lista de equipos</p>
     <a href="./creaciónEquipo.html"><img src="../Imagenes/add.gif">Registrar equipo</a>
     <table border="1">
         <th>No. Equipo</th>
@@ -29,11 +47,11 @@
             <td>4</td>
             <td>870</td>
             <td>Todos</td>
-            <td><a href="modificacion_Evidencias.html"><img src="../Imagenes/editar.png"></a></td>
-            <td><a href="eliminacion_Evidencias.html"><img src="../Imagenes/eliminar.png"></a></td>
+            <td><a href="editarEquipo.html"><img src="../Imagenes/editar.png"></a></td>
+            <td><a href="eliminarEquipo.html"><img src="../Imagenes/eliminar.png"></a></td>
         </tr>
     </table>
-    <a href="./consultaEquipos.html">Regresar</a>
+    <a href="javascript: history.go(-1)">Regresar</a>
     <footer>
         Elaborado por Yoryii
     </footer>
