@@ -2,7 +2,7 @@
 <html lang="es">
     <head>
         <link rel="stylesheet" href="../plantilla/bootstrap.min.css">
-        <script src="../bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
+        <script src="../JS/Categoria.js"></script>
         <meta charset="UTF-8">
         <title>ProgrammerPancho</title>
     </head>
@@ -13,7 +13,7 @@
         <main>
             <section>
                 <h1>REGISTRO DE CATEGORIAS</h1>
-                <form>
+                <form onsubmit="return validar(this)">
                 <div id="datosPersonales">
                     <fieldset>
                         <legend>Datos de la categoría</legend>
@@ -29,7 +29,8 @@
                            <input type="text" name="nombre" required>
                            <br>
                         <button>Cancelar</button>
-                        <button>Guardar</button>
+                        <button type="submit">Guardar</button>
+                        <div id="notificaciones"></div>
                     </fieldset>
                 </form>
                 <a href="javascript: history.go(-1)">Regresar</a>

@@ -2,7 +2,7 @@
 <html lang="es">
     <head>
         <link rel="stylesheet" href="../plantilla/bootstrap.min.css">
-        <script src="../bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
+        <script src="../JS/Categoria.js"></script>
         <meta charset="UTF-8">
         <title>Programmer Pancho</title>
     </head>
@@ -13,24 +13,24 @@
         <main>
             <section>
                 <h1>MODIFICACIÓN CATEGORÍA</h1>
-                <form>
+                <form onsubmit="return validar(this)">
                 <div id="datosPersonales">
                     <fieldset>
                         <legend>Modificar Datos</legend>
                        
                            <label>Número de categoría:</label>
-                           <input type="number" name="idCategoria" required disabled>
+                           <input type="number" name="idCategoria" required>
                            <button>Buscar</button>
                            <br>
                            <label>Nombre:</label>
-                           <input type="number" name="nombre" required disabled> 
+                           <input type="text" name="nombre" required> 
                            <br>
                            <label>Semestre límite</label>
                            <input type="number" name="limiteSemestre" required>
                            <br>
-                           <button>Guardar</button>
+                           <button type="submit">Guardar</button>
                            <button>Cancelar</button>
-                        
+                           <div id="notificaciones"></div>
                     </fieldset>
                 </div>
                 </form>
