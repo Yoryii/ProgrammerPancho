@@ -2,6 +2,7 @@
 <html lang="es">
     <head>
         <link rel="stylesheet" href="../Plantilla/bootstrap.min.css">
+        <script src="../JS/Problemas.js"></script>
         <meta charset="UTF-8">
         <title>ProgrammerPancho</title>
     </head>
@@ -13,7 +14,7 @@
         <main>
             <section>
                 <h1>EDITAR PROBLEMAS</h1>
-                <form>
+                <form onsubmit="return validar(this)">
                 <div id="datosproblema">
                     <fieldset>
                         <legend>Datos del Problema</legend>
@@ -35,7 +36,8 @@
                            <br>
 
                         <button>Cancelar</button>
-                        <button>Guardar</button>
+                        <button type="submit">Guardar</button>
+                        <div id="notificaciones"></div>
                     </fieldset>
                 </form>
                 <a href="../Problemas/ConsultaProblemas.html">Regresar</a>

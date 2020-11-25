@@ -2,6 +2,7 @@
 <html lang="es">
     <head>
         <link rel="stylesheet" href="../Plantilla/bootstrap.min.css">
+        <script src="../JS/ProblemasResueltos.js"></script>
         <meta charset="UTF-8">
         <title>ProgrammerPancho</title>
     </head>
@@ -13,7 +14,7 @@
         <main>
             <section>
                 <h1>EDITAR PROBLEMAS Resueltos</h1>
-                <form>
+                <form onsubmit="return validar(this)">
                 <div id="datosproblema">
                     <fieldset>
                         <legend>Datos del Problema</legend>
@@ -25,13 +26,14 @@
                            <input type="number" name="idequipo" required>
                            <br>
                            <label>Tiempo Ejecucion:</label>
-                           <input type="number" name="tiempoeje" required>
+                           <input type="number" name="tiempoMax" required>
                            <br>
                            <label>Puntos:</label>
                            <input type="number" name="puntos" required>
                            <br>
                         <button>Cancelar</button>
-                        <button>Guardar</button>
+                        <button type="submit">Guardar</button>
+                        <div id="notificaciones"></div>
                     </fieldset>
                 </form>
                 <a href="../ProblemasResueltos/ConsultaProblemasRes.html">Regresar</a>
