@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="../plantilla/bootstrap.min.css">
     <script src="../bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
+    <script src="../JS/Docente.js"></script>
     <meta charset="UTF-8">
     <title>ProgrammerPancho</title>
 </head>
@@ -13,7 +14,7 @@
     <main>
         <section>
             <h1>REGISTRO DE DOCENTES</h1>
-            <form>
+            <form onsubmit="return validar(this)">
                 <div id="datosPersonales">
                     <fieldset>
                         <legend>Datos del docente</legend>
@@ -35,7 +36,7 @@
                         <br>
 
                         <label>Cédula:</label>
-                        <input type="text" name="cédula" required>
+                        <input type="text" name="cedula" required>
                         <br>
 
                         <label>ID Carrera:</label>
@@ -43,8 +44,10 @@
                         <br>
 
                         <button>Cancelar</button>
-                        <button>Guardar</button>
+                        <button type="submit">Guardar</button>
+                        <div id="notificaciones"></div>
                     </fieldset>
+                    </div>
             </form>
             <a href="javascript: history.go(-1)">Regresar</a>
         </section>
