@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="../plantilla/bootstrap.min.css">
     <script src="../bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
+    <script src="../JS/Usuario.js"></script>
     <meta charset="UTF-8">
     <title>ProgrammerPancho</title>
 </head>
@@ -13,7 +14,7 @@
     <main>
         <section>
             <h1>REGISTRO DE USUARIOS</h1>
-            <form>
+            <form onsubmit="return validar(this)">
                 <div id="datosPersonales">
                     <fieldset>
                         <legend>Datos del usuario</legend>
@@ -27,8 +28,8 @@
                         <br>
 
                         <label>Sexo:</label>
-                        <input type="checkbox" name="sexo" required>Hombre
-                        <input type="checkbox" name="sexo" required>Mujer
+                        <input type="checkbox" name="sexo">Hombre
+                        <input type="checkbox" name="sexo">Mujer
                         <br>
 
                         <label>Teléfono:</label>
@@ -40,14 +41,14 @@
                         <br>
 
                         <label>Estatus:</label>
-                        <input type="checkbox" name="estatus" required>Activo
-                        <input type="checkbox" name="estatus" required>Inactivo
+                        <input type="checkbox" name="estatus">Activo
+                        <input type="checkbox" name="estatus">Inactivo
                         <br>
 
                         <label>Tipo:</label>
-                        <input type="checkbox" name="tipo" required>Docente
-                        <input type="checkbox" name="tipo" required>Alumno
-                        <input type="checkbox" name="tipo" required>Comité
+                        <input type="checkbox" name="tipo">Docente
+                        <input type="checkbox" name="tipo">Alumno
+                        <input type="checkbox" name="tipo">Comité
                         <br>
 
                         <label>Contraseña:</label>
@@ -55,9 +56,11 @@
                         <br>
 
                         <button>Cancelar</button>
-                        <button>Guardar</button>
+                        <button type="submit">Guardar</button>
+                        <div id="notificaciones"></div>
                     </fieldset>
-            </form>
+                    </div>
+                 </form>
             <a href="javascript: history.go(-1)">Regresar</a>
         </section>
     </main>
