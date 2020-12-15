@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, abort
 from modelo.models import db
-from modelo.models import Alumno, Categoria, Equipo
+from modelo.models import Alumno, Categoria, Equipo, Carrera
 from flask_sqlalchemy import SQLAlchemy
 
 app=Flask(__name__)
@@ -131,6 +131,48 @@ def eliminarCategoria(id):
     return redirect(url_for("consultarCategoria"))
 #Fin CRUD Categorias
 
+#CRUD Carreras
+@app.route('/carreras/new')
+def nuevaCarrera():
+    return render_template('Carreras/altaCarreras.html')
+@app.route('/carreras/save', methods=['POST'])
+def agregarCarrera():
+    try:
+        c=Carrera()
+        c.nombre=request.form['nombre']
+        c.siglas=request.form['siglas']
+        c.insertar()
+        return redirect(url_for('consultarCarrera'))
+    except:
+        abort(500)
+@app.route('/carreras')
+def consultarCarrera():
+    c=Carrera()
+    carreras=c.consultaGeneral()
+    return render_template('Carreras/consultaCarreras.html', carreras=carreras)
+@app.route('/carreras/edit/<int:id>')
+def editarCarrera(id):
+    c=Carrera()
+    c.idCarrera=id
+    carrera=c.consultaIndividual()
+    return render_template('Carreras/editarCarreras.html', carrera=carrera)
+@app.route('/carreras/modificar',methods=['POST'])
+def modificarCarrera():
+    c = Carrera()
+    c.idCarrera=request.form['idCarrera']
+    c.nombre = request.form['nombre']
+    c.siglas = request.form['siglas']
+    c.actualizar()
+    return redirect(url_for('consultarCarrera'))
+@app.route('/carreras/delete/<int:id>')
+def eliminarCarrera(id):
+    c=Carrera()
+    c.idCarrera=id
+    c.eliminar()
+    return redirect(url_for("consultarCarrera"))
+#Fin CRUD Carreras
+
+#Cambio de páginas de error
 @app.errorhandler(404)
 def error_404(e):
     return render_template('Errores/error_404.html'), 404

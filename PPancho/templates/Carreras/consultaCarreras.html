@@ -1,0 +1,38 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+    <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+    <script src="{{url_for('static',filename='JS/global.js')}}"></script>
+    <meta charset="UTF-8">
+    <title>CARRERAS</title>
+</head>
+<nav>
+    <h1>Carreras</h1>
+</nav>
+<body>
+    <p>Lista de carreras</p>
+    <a href="/carreras/new"><img src="{{url_for('static',filename='Imagenes/add.gif')}}">Registrar carrera</a>
+    <table border="1">
+        <th>Id carrera</th>
+        <th>Nombre</th>
+        <th>Siglas</th>
+        <th>Modificar</th>
+        <th>Eliminar</th>
+        {% for c in carreras %}
+                <tr>
+                    <td>{{c.idCarrera}}</td>
+                    <td>{{c.nombre}}</td>
+                    <td>{{c.siglas}}</td>
+                    <td><a href="/carreras/edit/{{c.idCarrera}}"><img src="{{url_for('static',filename='Imagenes/editar.png')}}"></a></td>
+                    <td><a href="javascript:eliminarCarrera({{c.idCarrera}},'{{c.nombre}}')"><img src="{{url_for('static',filename='Imagenes/eliminar.png')}}"></a></td>
+                </tr>
+        {% endfor %}
+    </table>
+    <a href="javascript: history.go(-1)">Regresar</a>
+    <footer>
+        <b>
+            <b>
+                Elaborado por Francisco Hdez
+    </footer>
+</body>
+</html>

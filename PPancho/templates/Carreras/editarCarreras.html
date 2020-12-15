@@ -1,0 +1,42 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+    <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>ProgrammerPancho</title>
+</head>
+<body>
+    <header>
+        INSTITUTO TECNOLOGICO DE ESTUDIOS SUPERIORES DE ZAMORA
+    </header>
+    <main>
+        <section>
+            <h1>REGISTRO DE CARRERAS</h1>
+            <form action="/carreras/modificar" method="post">
+                <div id="datosCarrea">
+                    <fieldset>
+                        <legend>Datos de la carrera</legend>
+
+                        <label>ID carrera:</label>
+                        <input type="number" name="idCarrera" value="{{carrera.idCarrera}}" required readonly>
+                        <br>
+
+                        <label>Nombre:</label>
+                        <input type="text" name="nombre" value="{{carrera.nombre}}" required>
+                        <br>
+
+                        <label>Siglas:</label>
+                        <input type="text" name="siglas" value="{{carrera.siglas}}" required>
+                        <br>
+
+                        <button type="submit">Guardar</button>
+                    </fieldset>
+            </form>
+            <a href="javascript: history.go(-1)">Regresar</a>
+        </section>
+    </main>
+    <footer>
+        Elaborado por Francisco Hdez
+    </footer>
+</body>
+</html> 
