@@ -3,6 +3,7 @@
 <head>
     <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
     <script src="../bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
+    <script src="{{url_for('static',filename='JS/global.js')}}"></script>
     <meta charset="UTF-8">
     <title>Categoria</title>
 </head>
@@ -16,13 +17,15 @@
         <th>Semestre límite</th>
         <th>Modificar</th>
         <th>Eliminar</th>
-        <tr>
-            <td>1</td>
-            <td>Manejo de arreglos</td>
-            <td>8</td>
-            <td><a href="/categorias/edit"><img src="{{url_for('static',filename='Imagenes/editar.png')}}"></a></td>
-            <td><a href="/categorias/delete"><img src="{{url_for('static',filename='Imagenes/eliminar.png')}}"></a></td>
-        </tr>
+        {% for c in categorias %}
+                <tr>
+                    <td>{{c.idCategoria}}</td>
+                    <td>{{c.nombre}}</td>
+                    <td>{{c.limiteSemestre}}</td>
+                    <td><a href="/categorias/edit/{{c.idCategoria}}"><img src="{{url_for('static',filename='Imagenes/editar.png')}}"></a></td>
+                    <td><a href="javascript:eliminarCategoria({{c.idCategoria}},'{{c.nombre}}')"><img src="{{url_for('static',filename='Imagenes/eliminar.png')}}"></a></td>
+                </tr>
+        {% endfor %}
     </table>
     <a href="javascript: history.go(-1)">Regresar</a>
     <footer>

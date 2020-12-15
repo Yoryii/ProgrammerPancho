@@ -12,7 +12,7 @@ class Alumno(db.Model):
         db.session.add(self)
         db.session.commit()
     def actualizar(self):
-        db.session.marge(self)
+        db.session.merge(self)
         db.session.commit()
     def eliminar(self):
         db.session.delete(self)
@@ -31,10 +31,11 @@ class Categoria(db.Model):
         db.session.add(self)
         db.session.commit()
     def actualizar(self):
-        db.session.marge(self)
+        db.session.merge(self)
         db.session.commit()
     def eliminar(self):
-        db.session.delete(self)
+        categoria=self.consultaIndividual()
+        db.session.delete(categoria)
         db.session.commit()
     def consultaGeneral(self):
         return self.query.all()
@@ -56,7 +57,7 @@ class Equipo(db.Model):
         db.session.add(self)
         db.session.commit()
     def actualizar(self):
-        db.session.marge(self)
+        db.session.merge(self)
         db.session.commit()
     def eliminar(self):
         db.session.delete(self)

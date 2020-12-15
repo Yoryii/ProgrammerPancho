@@ -13,23 +13,20 @@
         <main>
             <section>
                 <h1>MODIFICACIÓN CATEGORÍA</h1>
-                <form onsubmit="return validar(this)">
-                <div id="datosPersonales">
+                <form onsubmit="return validar(this)" action="/categorias/modificar" method="post">
+                <div>
                     <fieldset>
                         <legend>Modificar Datos</legend>
-                       
                            <label>Número de categoría:</label>
-                           <input type="number" name="idCategoria" required>
-                           <button>Buscar</button>
+                           <input type="number" name="idCategoria" value="{{categoria.idCategoria}}" required readonly>
                            <br>
                            <label>Nombre:</label>
-                           <input type="text" name="nombre" required> 
+                           <input type="text" name="nombre" value="{{categoria.nombre}}" required>
                            <br>
                            <label>Semestre límite</label>
-                           <input type="number" name="limiteSemestre" required>
+                           <input type="number" name="limiteSemestre" value="{{categoria.limiteSemestre}}" required>
                            <br>
                            <button type="submit">Guardar</button>
-                           <button>Cancelar</button>
                            <div id="notificaciones"></div>
                     </fieldset>
                 </div>

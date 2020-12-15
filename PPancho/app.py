@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, abort
 from modelo.models import db
 from modelo.models import Alumno, Categoria, Equipo
 from flask_sqlalchemy import SQLAlchemy
@@ -94,15 +94,6 @@ def agregarEquipo():
 @app.route('/categorias/new')
 def nuevaCategoria():
     return render_template('Categorias/creaciónCategoria.html')
-@app.route('/categorias/edit')
-def editarCategoria():
-    return render_template('Categorias/editarCategoria.html')
-@app.route('/categorias/delete')
-def eliminarCategoria():
-    return render_template('Categorias/eliminarCategoria.html')
-@app.route('/categorias')
-def consultarCategoria():
-    return render_template('Categorias/consultaCategorias.html')
 @app.route('/categorias/save', methods=['POST'])
 def agregarCategoria():
     try:
@@ -110,10 +101,34 @@ def agregarCategoria():
         c.nombre=request.form['nombre']
         c.limiteSemestre=request.form['limiteSemestre']
         c.insertar()
-        return 'Guardado'
+        return redirect(url_for('consultarCategoria'))
     except:
-        return 'error'
-
+        abort(500)
+@app.route('/categorias')
+def consultarCategoria():
+    c=Categoria()
+    categorias=c.consultaGeneral()
+    return render_template('Categorias/consultaCategorias.html', categorias=categorias)
+@app.route('/categorias/edit/<int:id>')
+def editarCategoria(id):
+    c=Categoria()
+    c.idCategoria=id
+    categoria=c.consultaIndividual()
+    return render_template('Categorias/editarCategoria.html', categoria=categoria)
+@app.route('/categorias/modificar',methods=['POST'])
+def modificarCategorias():
+    c = Categoria()
+    c.idCategoria=request.form['idCategoria']
+    c.nombre = request.form['nombre']
+    c.limiteSemestre = request.form['limiteSemestre']
+    c.actualizar()
+    return redirect(url_for('consultarCategoria'))
+@app.route('/categorias/delete/<int:id>')
+def eliminarCategoria(id):
+    c=Categoria()
+    c.idCategoria=id
+    c.eliminar()
+    return redirect(url_for("consultarCategoria"))
 #Fin CRUD Categorias
 
 @app.errorhandler(404)
