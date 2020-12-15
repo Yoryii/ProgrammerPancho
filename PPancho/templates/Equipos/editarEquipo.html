@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+        <script src="../bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
+        <meta charset="UTF-8">
+        <title>Programmer Pancho</title>
+    </head>
+    <body>
+        <header>
+            INSTITUTO TECNOLOGICO DE ESTUDIOS SUPERIORES DE ZAMORA
+        </header>
+        <main>
+            <section>
+                <h1>MODIFICACIÓN EQUIPO</h1>
+                <form>
+                <div id="datosPersonales">
+                    <fieldset>
+                        <legend>Modificar Datos</legend>
+                       
+                        <label>Número de equipo:</label>
+                        <input type="number" name="idEquipo" required> 
+                        <button>Buscar</button>
+                        <br>
+                        <label>Número de asesor:</label>
+                        <input type="number" name="asesor" required>
+                        <button>Buscar</button>
+                        <br>
+                        <label>Número de control del integrante no. 1:</label>
+                        <input type="number" name="integrante1" required>
+                        <button>Buscar</button>
+                        <br>
+                        <label>Número de control del integrante no. 2:</label>
+                        <input type="number" name="integrante2" required>
+                        <button>Buscar</button>
+                        <br>
+                        <label>Número de control del integrante no. 3:</label>
+                        <input type="number" name="integrante3" required>
+                        <button>Buscar</button>
+                        <br>
+                        <label>Nombre del equipo:</label>
+                        <input type="text" name="nombre" required>
+                        <br>
+                        <label>Número de la categoría:</label>
+                        <input type="number" name="idCategoia" required>
+                        <button>Buscar</button>
+                        <br>
+                        <label>Puntos:</label>
+                        <input type="number" name="puntos" required>
+                        <br>
+                        <label>Problemas resueltos:</label>
+                        <input type="text" name="problemasResueltos" required>
+                        <br>
+                           <button>Guardar</button>
+                           <button>Cancelar</button>
+                        
+                    </fieldset>
+                </div>
+                </form>
+                <<a href="javascript: history.go(-1)">Regresar</a>
+            </section>
+
+        </main>
+
+        <footer>
+            Elaborado por Yoryii
+        </footer>
+    </body>
+</html>

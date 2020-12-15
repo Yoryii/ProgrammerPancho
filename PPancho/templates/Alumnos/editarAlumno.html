@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+        <script src="{{url_for('static',filename='JS/Alumno.js')}}"></script>
+        <meta charset="UTF-8">
+        <title>Programmer Pancho</title>
+    </head>
+    <body>
+        <header>
+            INSTITUTO TECNOLOGICO DE ESTUDIOS SUPERIORES DE ZAMORA
+        </header>
+        <main>
+            <section>
+                <h1>MODIFICACIÓN ALUMNO</h1>
+                <form onsubmit="return validar(this)">
+                <div id="datosPersonales">
+                    <fieldset>
+                        <legend>Modificar Datos</legend>
+                       
+                           <label>Número de control:</label>
+                           <input type="number" name="noControl" required>
+                           <button>Buscar</button>
+                           <br>
+                           <label>Número de usuario:</label>
+                           <input type="number" name="idUsuario" required> 
+                           <button>Buscar</button>
+                           <br>
+                           <label>Número de carrera:</label>
+                           <input type="number" name="idCarrera" required> 
+                           <button>Buscar</button>
+                           <br>
+                           <label>Semestre</label>
+                           <input type="number" name="semestre" required>
+                           <br>
+                           <button type="submit">Guardar</button>
+                           <button>Cancelar</button>
+                           <div id="notificaciones"></div>
+                    </fieldset>
+                </div>
+                </form>
+                <a href="javascript: history.go(-1)">Regresar</a>
+            </section>
+
+        </main>
+
+        <footer>
+            Elaborado por Yoryii
+        </footer>
+    </body>
+</html>

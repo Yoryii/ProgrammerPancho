@@ -1,0 +1,31 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+    <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+    <script src="../bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Principal</title>
+</head>
+<nav>
+    <h1>Programmer Pancho</h1>
+    <p>Menú</p>
+    <ul>
+        <li><a href="Usuarios/consultaUsuarios.html">Usuarios</a></li>
+        <li><a href="Docentes/consultaDocentes.html">Docentes</a></li>
+        <li><a href="Carreras/consultaCarreras.html">Carreras</li>
+        <li><a href="/alumnos">Alumnos</a></li>
+        <li><a href="/equipos">Equipos</a></li>
+        <li><a href="/categorias">Categorías</a></li>
+        <li><a href="Problemas/ConsultaProblemas.html">Problemas</a></li>
+        <li><a href="ProblemasResueltos/ConsultaProblemasRes.html">Problemas resueltos</a></li>
+        <li><a href="ProblemasAPublicar/ConsultaProblemasPub.html">Problemas a publicar</a></li>
+        <li><a href="Ediciones/ConsultaEdiciones.html">Ediciones</a></li>
+        <p><b>El usuario actual es: {{user}}</b></p>
+    </ul>
+</nav>
+<body>
+    <footer>
+        Elaborado por Yoryii
+    </footer>
+</body>
+</html>

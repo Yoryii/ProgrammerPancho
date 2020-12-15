@@ -1,0 +1,21 @@
+<!Doctype HTML>
+<HTML LANG="ES">
+    <HEAD>
+        <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+        <meta charset="utf-8">
+        <title>ProgrammerPancho</title>
+    </HEAD>
+    <body>
+        <p><b>Acceso al Sistema ProgrammerPancho</b></p>
+        <form action="/login">
+            <label>Email:</label>
+            <input type="email" name="email">
+            <br>
+            <label>Contraseña:</label>
+            <input type="password" name="pwd">
+            <br>
+            <button type="submit">Entrar</button>
+            <a href="/alumnos/new">Registrar Cuenta</a>
+        </form>
+    </body>
+</HTML>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+    <script src="../bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Categoria</title>
+</head>
+<body>
+    <h1>Categorías</h1>
+    <p>Lista de categorías</p>
+    <a href="/categorias/new"><img src="{{url_for('static',filename='Imagenes/add.gif')}}">Registrar categoría</a>
+    <table border="1">
+        <th>No. Categoría</th>
+        <th>Nombre</th>
+        <th>Semestre límite</th>
+        <th>Modificar</th>
+        <th>Eliminar</th>
+        <tr>
+            <td>1</td>
+            <td>Manejo de arreglos</td>
+            <td>8</td>
+            <td><a href="/categorias/edit"><img src="{{url_for('static',filename='Imagenes/editar.png')}}"></a></td>
+            <td><a href="/categorias/delete"><img src="{{url_for('static',filename='Imagenes/eliminar.png')}}"></a></td>
+        </tr>
+    </table>
+    <a href="javascript: history.go(-1)">Regresar</a>
+    <footer>
+        Elaborado por Yoryii
+    </footer>
+</body>
+</html>

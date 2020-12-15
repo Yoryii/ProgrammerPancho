@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+        <script src="{{url_for('static',filename='JS/Categoria.js')}}"></script>
+        <meta charset="UTF-8">
+        <title>ProgrammerPancho</title>
+    </head>
+    <body>
+        <header>
+            INSTITUTO TECNOLOGICO DE ESTUDIOS SUPERIORES DE ZAMORA
+        </header>
+        <main>
+            <section>
+                <h1>REGISTRO DE CATEGORIAS</h1>
+                <form onsubmit="return validar(this)" action="/categorias/save" method="post">
+                    <div>
+                        <fieldset>
+                            <legend>Datos de la categoría</legend>
+                               <label>Semestre límite:</label>
+                               <input type="number" name="limiteSemestre" required>
+                               <br>
+                               <label>Nombre:</label>
+                               <input type="text" name="nombre" required>
+                               <br>
+                            <button type="reset">Limpiar</button>
+                            <button type="submit">Guardar</button>
+                            <div id="notificaciones"></div>
+                        </fieldset>
+                    </div>
+                </form>
+                <a href="javascript: history.go(-1)">Regresar</a>
+            </section>
+        </main>
+        <footer>
+            Elaborado por Yoryii
+        </footer>
+    </body>
+</html> 
