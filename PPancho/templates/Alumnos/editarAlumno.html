@@ -13,25 +13,22 @@
         <main>
             <section>
                 <h1>MODIFICACIÓN ALUMNO</h1>
-                <form onsubmit="return validar(this)">
+                <form onsubmit="return validar(this)" action="/alumnos/modificar" method="post">
                 <div id="datosPersonales">
                     <fieldset>
                         <legend>Modificar Datos</legend>
                        
                            <label>Número de control:</label>
-                           <input type="number" name="noControl" required>
-                           <button>Buscar</button>
+                           <input type="number" name="noControl" value="{{alumno.noControl}}" required readonly>
                            <br>
                            <label>Número de usuario:</label>
-                           <input type="number" name="idUsuario" required> 
-                           <button>Buscar</button>
+                           <input type="number" name="idUsuario" value="{{alumno.idUsuario}}" required>
                            <br>
                            <label>Número de carrera:</label>
-                           <input type="number" name="idCarrera" required> 
-                           <button>Buscar</button>
+                           <input type="number" name="idCarrera" value="{{alumno.idCarrera}}" required>
                            <br>
                            <label>Semestre</label>
-                           <input type="number" name="semestre" required>
+                           <input type="number" name="semestre" value="{{alumno.semestre}}" required>
                            <br>
                            <button type="submit">Guardar</button>
                            <button>Cancelar</button>

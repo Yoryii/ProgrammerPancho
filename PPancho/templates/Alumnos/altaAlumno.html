@@ -14,9 +14,10 @@
             <section>
                 <h1>REGISTRO DE ALUMNOS</h1>
                 <form onsubmit="return validar(this)" action="/alumnos/save" method="post">
-                    <div>
+                    <div id="datosPersonales">
                         <fieldset>
                             <legend>Datos del alumno</legend>
+
                                <label>Número de control:</label>
                                <input type="number" name="noControl" required>
                                <br>
@@ -29,7 +30,7 @@
                                <label>Semestre:</label>
                                <input type="number" name="semestre" required>
                                <br>
-                            <button>Cancelar</button>
+                            <button type="reset">Limpiar</button>
                             <button type="submit">Guardar</button>
                             <div id="notificaciones"></div>
                         </fieldset>

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, abort
 from modelo.models import db
-from modelo.models import Alumno, Categoria, Equipo, Carrera
+from modelo.models import Categoria, Carrera, Alumno
 from flask_sqlalchemy import SQLAlchemy
 
 app=Flask(__name__)
@@ -24,71 +24,6 @@ def login():
 @app.route('/principal')
 def principal():
     return render_template('principal.html')
-
-'''Ruta dinamica
-@app.route('/eliminarCategoria/<idCategoria>')
-def eliminarCategoria(idCategoria):
-    return 'Eliminando la categoria ' + idCategoria'''
-
-#CRUD Alumnos
-@app.route('/alumnos/new')
-def nuevoAlumno():
-    return render_template('Alumnos/altaAlumno.html')
-@app.route('/alumnos/edit')
-def editarAlumno():
-    return render_template('Alumnos/editarAlumno.html')
-@app.route('/alumnos/delete')
-def eliminarAlumno():
-    return render_template('Alumnos/eliminarAlumno.html')
-@app.route('/alumnos')
-def consultarAlumno():
-    return render_template('Alumnos/consultaAlumnos.html')
-@app.route('/alumnos/save', methods=['POST'])
-def agregarAlumno():
-    #try:
-    a=Alumno()
-    a.noControl=request.form['noControl']
-    a.idUsuario=request.form['idUsuario']
-    a.idCarrera=request.form['idCarrera']
-    a.semestre=request.form['semestre']
-    a.insertar()
-        #return 'Edificio registrado con exito'
-    #except:
-        #return 'Error al registrar al alumno'
-
-#Fin CRUD Alumnos
-
-#CRUD Equipos
-@app.route('/equipos/new')
-def nuevoEquipo():
-    return render_template('Equipos/creaciónEquipo.html')
-@app.route('/equipos/edit')
-def editarEquipo():
-    return render_template('Equipos/editarEquipo.html')
-@app.route('/equipos/delete')
-def eliminarEquipo():
-    return render_template('Equipos/eliminarEquipo.html')
-@app.route('/equipos')
-def consultarEquipo():
-    return render_template('Equipos/consultaEquipos.html')
-@app.route('/equipos/save', methods=['POST'])
-def agregarEquipo():
-    #try:
-    e=Equipo()
-    e.asesor=request.form['asesor']
-    e.integrante1=request.form['integrante1']
-    e.integrante2=request.form['integrante2']
-    e.integrante3=request.form['integrante3']
-    e.nombre=request.form['nombre']
-    e.idCategoria=request.form['idCategoria']
-    e.puntos=request.form['puntos']
-    e.problemasResueltos=request.form['problemasResueltos']
-    e.insertar()
-    return 'guardado'
-    #3except:
-        #return 'error'
-
-#Termina CRUD
 
 #CRUD Categorias
 @app.route('/categorias/new')
@@ -130,6 +65,50 @@ def eliminarCategoria(id):
     c.eliminar()
     return redirect(url_for("consultarCategoria"))
 #Fin CRUD Categorias
+
+#CRUD Alumnos
+@app.route('/alumnos/new')
+def nuevoAlumno():
+    return render_template('Alumnos/altaAlumno.html')
+@app.route('/alumnos/save', methods=['POST'])
+def agregarAlumno():
+    try:
+        a=Alumno()
+        a.noControl=request.form['noControl']
+        a.idUsuario=request.form['idUsuario']
+        a.idCarrera=request.form['idCarrera']
+        a.semestre=request.form['semestre']
+        a.insertar()
+        return redirect(url_for('consultarAlumno'))
+    except:
+        abort(500)
+@app.route('/alumnos')
+def consultarAlumno():
+    a=Alumno()
+    alumnos=a.consultaGeneral()
+    return render_template('Alumnos/consultaAlumnos.html', alumnos=alumnos)
+@app.route('/alumnos/edit/<int:id>')
+def editarAlumno(id):
+    a=Alumno()
+    a.noControl=id
+    alumno=a.consultaIndividual()
+    return render_template('Alumnos/editarAlumno.html', alumno=alumno)
+@app.route('/alumnos/modificar',methods=['POST'])
+def modificarAlumnos():
+    a=Alumno()
+    a.noControl = request.form['noControl']
+    a.idUsuario = request.form['idUsuario']
+    a.idCarrera = request.form['idCarrera']
+    a.semestre = request.form['semestre']
+    a.actualizar()
+    return redirect(url_for('consultarAlumno'))
+@app.route('/alumnos/delete/<int:id>')
+def eliminarAlumno(id):
+    a=Alumno()
+    a.noControl=id
+    a.eliminar()
+    return redirect(url_for("consultarAlumno"))
+#Fin CRUD Alumnos
 
 #CRUD Carreras
 @app.route('/carreras/new')

@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
-    <script src="../bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
+    <script src="{{url_for('static',filename='JS/global.js')}}"></script>
     <meta charset="UTF-8">
     <title>Alumno</title>
 </head>
@@ -10,7 +10,7 @@
 <body>
     <h1>Alumnos</h1>
     <p>Lista de alumnos</p>
-    <a href="alumnos/new"><img src="{{url_for('static',filename='Imagenes/add.gif')}}">Registrar alumno</a>
+    <a href="/alumnos/new"><img src="{{url_for('static',filename='Imagenes/add.gif')}}">Registrar alumno</a>
     <table border="1">
         <th>No. Control</th>
         <th>No. Usuario</th>
@@ -18,14 +18,16 @@
         <th>Semestre</th>
         <th>Modificar</th>
         <th>Eliminar</th>
-        <tr>
-            <td>1</td>
-            <td>6</td>
-            <td>2</td>
-            <td>7</td>
-            <td><a href="/alumnos/edit"><img src="{{url_for('static',filename='Imagenes/editar.png')}}"></a></td>
-            <td><a href="/alumnos/delete"><img src="{{url_for('static',filename='Imagenes/eliminar.png')}}"></a></td>
-        </tr>
+        {% for a in alumnos %}
+                <tr>
+                    <td>{{a.noControl}}</td>
+                    <td>{{a.idUsuario}}</td>
+                    <td>{{a.idCarrera}}</td>
+                    <td>{{a.semestre}}</td>
+                    <td><a href="/alumnos/edit/{{a.noControl}}"><img src="{{url_for('static',filename='Imagenes/editar.png')}}"></a></td>
+                    <td><a href="javascript:eliminarAlumno({{a.noControl}})"><img src="{{url_for('static',filename='Imagenes/eliminar.png')}}"></a></td>
+                </tr>
+        {% endfor %}
     </table>
     <a href="javascript: history.go(-1)">Regresar</a>
     <footer>

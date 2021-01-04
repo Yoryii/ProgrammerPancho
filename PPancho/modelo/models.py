@@ -22,27 +22,6 @@ class Carrera(db.Model):
     def consultaIndividual(self):
         return self.query.get(self.idCarrera)
 
-class Alumno(db.Model):
-    __tablename__='Alumnos'
-    noControl=Column(Integer, primary_key=True)
-    idUsuario=Column(Integer, unique=True)
-    idCarrera=Column(Integer, unique=True)
-    semestre=Column(Integer)
-    def insertar(self):
-        db.session.add(self)
-        db.session.commit()
-    def actualizar(self):
-        db.session.merge(self)
-        db.session.commit()
-    def eliminar(self):
-        alumno = self.consultaIndividual()
-        db.session.delete(alumno)
-        db.session.commit()
-    def consultaGeneral(self):
-        return self.query.all()
-    def consultaIndividual(self):
-        return self.query.get(self.noControl)
-
 class Categoria(db.Model):
     __tablename__='Categorias'
     idCategoria=Column(Integer, primary_key=True)
@@ -63,17 +42,12 @@ class Categoria(db.Model):
     def consultaIndividual(self):
         return self.query.get(self.idCategoria)
 
-class Equipo(db.Model):
-    __tablename__='Equipos'
-    idEquipo=Column(Integer, primary_key=True)
-    asesor=Column(Integer, unique=True)
-    integrante1=Column(Integer, unique=True)
-    integrante2=Column(Integer, unique=True)
-    integrante3=Column(Integer, unique=True)
-    nombre=Column(String, unique=True)
-    idCategoria=Column(Integer, ForeignKey(Categoria.idCategoria))
-    puntos=Column(Integer)
-    problemasResueltos=Column(String)
+class Alumno(db.Model):
+    __tablename__='Alumnos'
+    noControl=Column(Integer, primary_key=True)
+    idUsuario=Column(Integer, ForeignKey('Usuarios.idUsuario'), unique=True)
+    idCarrera=Column(Integer, ForeignKey('Carreras.idCarrera'), unique=True)
+    semestre=Column(Integer)
     def insertar(self):
         db.session.add(self)
         db.session.commit()
@@ -81,11 +55,10 @@ class Equipo(db.Model):
         db.session.merge(self)
         db.session.commit()
     def eliminar(self):
-        equipo = self.consultaIndividual()
-        db.session.delete(equipo)
+        alumno=self.consultaIndividual()
+        db.session.delete(alumno)
         db.session.commit()
     def consultaGeneral(self):
         return self.query.all()
     def consultaIndividual(self):
-        return self.query.get(self.idEquipo)
-
+        return self.query.get(self.noControl)
