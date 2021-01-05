@@ -12,3 +12,13 @@ function eliminarAlumno(id){
     if(confirm('¿Estás seguro de eliminar el alumno ?'))
         location.href='/alumnos/delete/'+id;
 }
+
+function eliminarUsuario(id,nombre){
+    if(confirm('¿Estás seguro de eliminar el usuario '+nombre+'?'))
+        location.href='/usuarios/delete/'+id;
+}
+
+function eliminarDocente(id){
+    if(confirm('¿Estás seguro de eliminar al docente?'))
+        location.href='/docentes/delete/'+id;
+}

@@ -11,18 +11,6 @@ function validar(form){
     }
 }
 
-
-
-function validaridUsuario(cad){
-	var patron=/\d{8}/;
-	if (patron.test(cad)){
-		return '';
-	}
-	else{
-		return "El id debe tener 8 dígitos <br>";
-	}
-}
-
 function validarTelefono(cad){
 	var ban=false;
 	if (cad.length==12){
@@ -31,11 +19,11 @@ function validarTelefono(cad){
 			return '';
 		}
 		else{
-			return 'El número no cumple ###-###-#### <br>';
+			return 'El nï¿½mero no cumple ###-###-#### <br>';
 		}
 	}
 	else{
-		return 'El número debe tener 12 caracteres. <br>';
+		return 'El nï¿½mero debe tener 12 caracteres. <br>';
 	}
 }
 

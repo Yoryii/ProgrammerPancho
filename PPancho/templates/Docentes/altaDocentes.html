@@ -1,0 +1,54 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+    <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+    <script src="{{url_for('static',filename='JS/Docente.js')}}"></script>
+    <meta charset="UTF-8">
+    <title>ProgrammerPancho</title>
+</head>
+<body>
+    <header>
+        INSTITUTO TECNOLOGICO DE ESTUDIOS SUPERIORES DE ZAMORA
+    </header>
+    <main>
+        <section>
+            <h1>REGISTRO DE DOCENTES</h1>
+            <form onsubmit="return validar(this)" action="/docentes/save" method="post">
+                <div id="datosPersonales">
+                    <fieldset>
+                        <legend>Datos del docente</legend>
+
+                        <label>ID usuario:</label>
+                        <input type="number" name="idUsuario" required>
+                        <br>
+
+                        <label>Escolaridad:</label>
+                        <input type="text" name="escolaridad" required>
+                        <br>
+
+                        <label>Especialidad:</label>
+                        <input type="text" name="especialidad" required>
+                        <br>
+
+                        <label>Cédula:</label>
+                        <input type="text" name="cedula" required>
+                        <br>
+
+                        <label>ID Carrera:</label>
+                        <input type="number" name="idCarrera" required>
+                        <br>
+
+                        <button type="reset">Limpiar</button>
+                        <button type="submit">Guardar</button>
+                        <div id="notificaciones"></div>
+                    </fieldset>
+                    </div>
+            </form>
+            <a href="javascript: history.go(-1)">Regresar</a>
+        </section>
+    </main>
+    <footer>
+        Elaborado por Francisco Hdez
+    </footer>
+</body>
+</html> 

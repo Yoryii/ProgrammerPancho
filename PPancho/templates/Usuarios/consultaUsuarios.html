@@ -1,0 +1,48 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+    <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+    <script src="{{url_for('static',filename='JS/global.js')}}"></script>
+    <meta charset="UTF-8">
+    <title>USUARIOS</title>
+</head>
+<nav>
+    <h1>Usuarios</h1>
+</nav>
+<body>
+    <p>Lista de usuarios</p>
+    <a href="/usuarios/new"><img src="{{url_for('static',filename='Imagenes/add.gif')}}">Registrar usuario</a>
+    <table border="5">
+        <th>Id usuario</th>
+        <th>Nombre</th>
+        <th>Sexo</th>
+        <th>Teléfono</th>
+        <th>Email</th>
+        <th>Estatus</th>
+        <th>Tipo</th>
+        <th>Contraseña</th>
+        <th>Modificar</th>
+        <th>Eliminar</th>
+        {% for u in usuarios %}
+                <tr>
+                    <td>{{u.idUsuario}}</td>
+                    <td>{{u.nombre}}</td>
+                    <td>{{u.sexo}}</td>
+                    <td>{{u.telefono}}</td>
+                    <td>{{u.email}}</td>
+                    <td>{{u.estatus}}</td>
+                    <td>{{u.tipo}}</td>
+                    <td>{{u.contraseña}}</td>
+                    <td><a href="/usuarios/edit/{{u.idUsuario}}"><img src="{{url_for('static',filename='Imagenes/editar.png')}}"></a></td>
+                    <td><a href="javascript:eliminarUsuario({{u.idUsuario}},'{{u.nombre}}')"><img src="{{url_for('static',filename='Imagenes/eliminar.png')}}"></a></td>
+                </tr>
+        {% endfor %}
+    </table>
+    <a href="javascript: history.go(-1)">Regresar</a>
+    <footer>
+        <b>
+        <b>
+        Elaborado por Francisco Hdez
+    </footer>
+</body>
+</html>

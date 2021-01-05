@@ -1,0 +1,62 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+    <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+    <script src="{{url_for('static',filename='JS/Usuario.js')}}"></script>
+    <meta charset="UTF-8">
+    <title>ProgrammerPancho</title>
+</head>
+<body>
+    <header>
+        INSTITUTO TECNOLOGICO DE ESTUDIOS SUPERIORES DE ZAMORA
+    </header>
+    <main>
+        <section>
+            <h1>REGISTRO DE USUARIOS</h1>
+            <form onsubmit="return validar(this)" action="/usuarios/save" method="post">
+                <div id="datosPersonales">
+                    <fieldset>
+                        <legend>Datos del usuario</legend>
+
+                        <label>Nombre:</label>
+                        <input type="text" name="nombre" required>
+                        <br>
+
+                        <label>Sexo:</label>
+                        <input type="text" name="sexo" placeholder="H ó M" required>
+                        <br>
+
+                        <label>Teléfono:</label>
+                        <input type="text" name="telefono" required>
+                        <br>
+
+                        <label>Email:</label>
+                        <input type="email" name="email" required>
+                        <br>
+
+                        <label>Estatus:</label>
+                        <input type="text" name="estatus" placeholder="Activo o inactivo" required>
+                        <br>
+
+                        <label>Tipo:</label>
+                        <input type="text" name="tipo" placeholder="D, A ó C" required>
+                        <br>
+
+                        <label>Contraseña:</label>
+                        <input type="password" name="contraseña" required>
+                        <br>
+
+                        <button type="reset">Limpiar</button>
+                        <button type="submit">Guardar</button>
+                        <div id="notificaciones"></div>
+                    </fieldset>
+                </div>
+            </form>
+            <a href="javascript: history.go(-1)">Regresar</a>
+        </section>
+    </main>
+    <footer>
+        Elaborado por Francisco Hdez
+    </footer>
+</body>
+</html> 

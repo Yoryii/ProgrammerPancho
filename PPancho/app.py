@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, abort
 from modelo.models import db
-from modelo.models import Categoria, Carrera, Alumno
+from modelo.models import Categoria, Carrera, Alumno, Usuario, Docente
 from flask_sqlalchemy import SQLAlchemy
 
 app=Flask(__name__)
@@ -65,6 +65,104 @@ def eliminarCategoria(id):
     c.eliminar()
     return redirect(url_for("consultarCategoria"))
 #Fin CRUD Categorias
+
+#CRUD Docentes
+@app.route('/docentes/new')
+def nuevoDocente():
+    return render_template('Docentes/altaDocentes.html')
+@app.route('/docentes/save', methods=['POST'])
+def agregarDocente():
+    try:
+        d=Docente()
+        d.idUsuario=request.form['idUsuario']
+        d.escolaridad=request.form['escolaridad']
+        d.especialidad=request.form['especialidad']
+        d.cedula=request.form['cedula']
+        d.idCarrera=request.form['idCarrera']
+        d.insertar()
+        return redirect(url_for('consultarDocente'))
+    except:
+        abort(500)
+@app.route('/docentes')
+def consultarDocente():
+    d=Docente()
+    docentes=d.consultaGeneral()
+    return render_template('Docentes/consultaDocentes.html', docentes=docentes)
+@app.route('/docentes/edit/<int:id>')
+def editarDocente(id):
+    d=Docente()
+    d.idDocente=id
+    docente=d.consultaIndividual()
+    return render_template('Docentes/editarDocentes.html', docente=docente)
+@app.route('/docentes/modificar',methods=['POST'])
+def modificarDocentes():
+    d=Docente()
+    d.idDocente=request.form['idDocente']
+    d.idUsuario = request.form['idUsuario']
+    d.escolaridad = request.form['escolaridad']
+    d.especialidad = request.form['especialidad']
+    d.cedula = request.form['cedula']
+    d.idCarrera = request.form['idCarrera']
+    d.actualizar()
+    return redirect(url_for('consultarDocente'))
+@app.route('/docentes/delete/<int:id>')
+def eliminarDocente(id):
+    d=Docente()
+    d.idDocente=id
+    d.eliminar()
+    return redirect(url_for("consultarDocente"))
+#Fin CRUD Docentes
+
+#CRUD Usuarios
+@app.route('/usuarios/new')
+def nuevoUsuario():
+    return render_template('Usuarios/altaUsuarios.html')
+@app.route('/usuarios/save', methods=['POST'])
+def agregarUsuario():
+    try:
+        u=Usuario()
+        u.nombre=request.form['nombre']
+        u.sexo=request.form['sexo']
+        u.telefono=request.form['telefono']
+        u.email=request.form['email']
+        u.estatus=request.form['estatus']
+        u.tipo=request.form['tipo']
+        u.contraseña=request.form['contraseña']
+        u.insertar()
+        return redirect(url_for('consultarUsuario'))
+    except:
+        abort(500)
+@app.route('/usuarios')
+def consultarUsuario():
+    u=Usuario()
+    usuarios=u.consultaGeneral()
+    return render_template('Usuarios/consultaUsuarios.html', usuarios=usuarios)
+@app.route('/usuarios/edit/<int:id>')
+def editarUsuario(id):
+    u=Usuario()
+    u.idUsuario=id
+    usuario=u.consultaIndividual()
+    return render_template('Usuarios/editarUsuarios.html', usuario=usuario)
+@app.route('/usuarios/modificar',methods=['POST'])
+def modificarUsuarios():
+    u=Usuario()
+    u.idUsuario=request.form['idUsuario']
+    u.nombre = request.form['nombre']
+    u.sexo = request.form['sexo']
+    u.telefono=request.form['telefono']
+    u.email = request.form['email']
+    u.estatus = request.form['estatus']
+    u.tipo = request.form['tipo']
+    u.contraseña = request.form['contraseña']
+    u.actualizar()
+    return redirect(url_for('consultarUsuario'))
+@app.route('/usuarios/delete/<int:id>')
+def eliminarUsuario(id):
+    u=Usuario()
+    u.idUsuario=id
+    u.eliminar()
+    return redirect(url_for("consultarUsuario"))
+#Fin CRUD Usuarios
 
 #CRUD Alumnos
 @app.route('/alumnos/new')

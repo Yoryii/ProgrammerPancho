@@ -1,0 +1,57 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+    <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>ProgrammerPancho</title>
+</head>
+<body>
+    <header>
+        INSTITUTO TECNOLOGICO DE ESTUDIOS SUPERIORES DE ZAMORA
+    </header>
+    <main>
+        <section>
+            <h1>REGISTRO DE DOCENTES</h1>
+            <form onsubmit="return validar(this)" action="/docentes/modificar" method="post">
+                <div id="datosPersonales">
+                    <fieldset>
+                        <legend>Datos del docente</legend>
+
+                        <label>ID docente:</label>
+                        <input type="number" name="idDocente" value="{{docente.idDocente}}" required readonly>
+                        <br>
+
+                        <label>ID usuario:</label>
+                        <input type="number" name="idUsuario" value="{{docente.idUsuario}}" required>
+                        <br>
+
+                        <label>Escolaridad:</label>
+                        <input type="text" name="escolaridad" value="{{docente.escolaridad}}" required>
+                        <br>
+
+                        <label>Especialidad:</label>
+                        <input type="text" name="especialidad" value="{{docente.especialidad}}" required>
+                        <br>
+
+                        <label>Cédula:</label>
+                        <input type="text" name="cedula" value="{{docente.cedula}}" required>
+                        <br>
+
+                        <label>ID Carrera:</label>
+                        <input type="text" name="idCarrera" value="{{docente.idCarrera}}" required>
+                        <br>
+
+                        <button>Cancelar</button>
+                        <button type="submit">Guardar</button>
+                        <div id="notificaciones"></div>
+                    </fieldset>
+                    </div>
+            </form>
+            <a href="javascript: history.go(-1)">Regresar</a>
+        </section>
+    </main>
+    <footer>
+        Elaborado por Francisco Hdez
+    </footer>
+</body>
+</html> 
