@@ -110,3 +110,29 @@ class Alumno(db.Model):
         return self.query.all()
     def consultaIndividual(self):
         return self.query.get(self.noControl)
+
+class Equipo(db.Model):
+    __tablename__='Equipos'
+    idEquipo=Column(Integer, primary_key=True)
+    asesor=Column(Integer, ForeignKey('Docentes.idDocente'), unique=True)
+    integrante1=Column(Integer, ForeignKey('Alumnos.noControl'), unique=True)
+    integrante2 = Column(Integer, ForeignKey('Alumnos.noControl'), unique=True)
+    integrante3 = Column(Integer, ForeignKey('Alumnos.noControl'), unique=True)
+    nombre=Column(String, unique=True)
+    idCategoria=Column(Integer, ForeignKey('Categorias.idCategoria'), unique=True)
+    puntos=Column(Integer)
+    problemasResueltos=Column(String)
+    def insertar(self):
+        db.session.add(self)
+        db.session.commit()
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+    def eliminar(self):
+        equipo=self.consultaIndividual()
+        db.session.delete(equipo)
+        db.session.commit()
+    def consultaGeneral(self):
+        return self.query.all()
+    def consultaIndividual(self):
+        return self.query.get(self.idEquipo)

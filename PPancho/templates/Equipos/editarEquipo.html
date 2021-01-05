@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+        <meta charset="UTF-8">
+        <title>Programmer Pancho</title>
+    </head>
+    <body>
+        <header>
+            INSTITUTO TECNOLOGICO DE ESTUDIOS SUPERIORES DE ZAMORA
+        </header>
+        <main>
+            <section>
+                <h1>MODIFICACIÓN EQUIPO</h1>
+                <form action="/equipos/modificar" method="post">
+                <div id="datosPersonales">
+                    <fieldset>
+                        <legend>Modificar Datos</legend>
+                        <label>Número de equipo:</label>
+                        <input type="number" name="idEquipo" value="{{equipo.idEquipo}}" required readonly>
+                        <br>
+                        <label>Número de asesor:</label>
+                        <input type="number" name="asesor" value="{{equipo.asesor}}" required>
+                        <br>
+                        <label>Número de control del integrante no. 1:</label>
+                        <input type="number" name="integrante1" value="{{equipo.integrante1}}" required>
+                        <br>
+                        <label>Número de control del integrante no. 2:</label>
+                        <input type="number" name="integrante2" value="{{equipo.integrante2}}" required>
+                        <br>
+                        <label>Número de control del integrante no. 3:</label>
+                        <input type="number" name="integrante3" value="{{equipo.integrante3}}" required>
+                        <br>
+                        <label>Nombre del equipo:</label>
+                        <input type="text" name="nombre" value="{{equipo.nombre}}" required>
+                        <br>
+                        <label>Número de la categoría:</label>
+                        <input type="number" name="idCategoria" value="{{equipo.idCategoria}}" required>
+                        <br>
+                        <label>Puntos:</label>
+                        <input type="number" name="puntos" value="{{equipo.puntos}}" required>
+                        <br>
+                        <label>Problemas resueltos:</label>
+                        <input type="text" name="problemasResueltos" value="{{equipo.problemasResueltos}}" required>
+                        <br>
+                            <button type="submit">Guardar</button>
+                    </fieldset>
+                </div>
+                </form>
+                <<a href="javascript: history.go(-1)">Regresar</a>
+            </section>
+
+        </main>
+
+        <footer>
+            Elaborado por Yoryii
+        </footer>
+    </body>
+</html>

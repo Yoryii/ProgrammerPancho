@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+    <script src="{{url_for('static',filename='JS/global.js')}}"></script>
+    <meta charset="UTF-8">
+    <title>Equipo</title>
+</head>
+<body>
+    <h1>Equipos</h1>
+    <p>Lista de equipos</p>
+    <a href="/equipos/new"><img src="{{url_for('static',filename='Imagenes/add.gif')}}">Registrar equipo</a>
+    <table border="1">
+        <th>No. Equipo</th>
+        <th>No. Asesor</th>
+        <th>No. Integrante1</th>
+        <th>No. Integrante2</th>
+        <th>No. Integrante3</th>
+        <th>Nombre</th>
+        <th>No. Categoria</th>
+        <th>Puntos</th>
+        <th>Problemas resueltos</th>
+        <th>Modificar</th>
+        <th>Eliminar</th>
+        {% for e in equipos %}
+                <tr>
+                    <td>{{e.idEquipo}}</td>
+                    <td>{{e.asesor}}</td>
+                    <td>{{e.integrante1}}</td>
+                    <td>{{e.integrante2}}</td>
+                    <td>{{e.integrante3}}</td>
+                    <td>{{e.nombre}}</td>
+                    <td>{{e.idCategoria}}</td>
+                    <td>{{e.puntos}}</td>
+                    <td>{{e.problemasResueltos}}</td>
+                    <td><a href="/equipos/edit/{{e.idEquipo}}"><img src="{{url_for('static',filename='Imagenes/editar.png')}}"></a></td>
+                    <td><a href="javascript:eliminarEquipo({{e.idEquipo}},'{{e.nombre}}')"><img src="{{url_for('static',filename='Imagenes/eliminar.png')}}"></a></td>
+                </tr>
+        {% endfor %}
+    </table>
+    <a href="javascript: history.go(-1)">Regresar</a>
+    <footer>
+        Elaborado por Yoryii
+    </footer>
+</body>
+</html>

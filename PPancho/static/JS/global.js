@@ -22,3 +22,8 @@ function eliminarDocente(id){
     if(confirm('¿Estás seguro de eliminar al docente?'))
         location.href='/docentes/delete/'+id;
 }
+
+function eliminarEquipo(id,nombre){
+    if(confirm('¿Estás seguro de eliminar el equipo '+nombre+'?'))
+        location.href='/equipos/delete/'+id;
+}

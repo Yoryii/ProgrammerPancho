@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, abort
 from modelo.models import db
-from modelo.models import Categoria, Carrera, Alumno, Usuario, Docente
+from modelo.models import Categoria, Carrera, Alumno, Usuario, Docente, Equipo
 from flask_sqlalchemy import SQLAlchemy
 
 app=Flask(__name__)
@@ -65,6 +65,59 @@ def eliminarCategoria(id):
     c.eliminar()
     return redirect(url_for("consultarCategoria"))
 #Fin CRUD Categorias
+
+#CRUD Equipos
+@app.route('/equipos/new')
+def nuevoEquipo():
+    return render_template('Equipos/creaciónEquipo.html')
+@app.route('/equipos/save', methods=['POST'])
+def agregarEquipo():
+    try:
+        e = Equipo()
+        e.asesor = request.form['asesor']
+        e.integrante1 = request.form['integrante1']
+        e.integrante2 = request.form['integrante2']
+        e.integrante3 = request.form['integrante3']
+        e.nombre = request.form['nombre']
+        e.idCategoria = request.form['idCategoria']
+        e.puntos = request.form['puntos']
+        e.problemasResueltos = request.form['problemasResueltos']
+        e.insertar()
+        return redirect(url_for('consultarEquipo'))
+    except:
+        abort(500)
+@app.route('/equipos')
+def consultarEquipo():
+    e=Equipo()
+    equipos=e.consultaGeneral()
+    return render_template('Equipos/consultaEquipos.html', equipos=equipos)
+@app.route('/equipos/edit/<int:id>')
+def editarEquipo(id):
+    e=Equipo()
+    e.idEquipo=id
+    equipo=e.consultaIndividual()
+    return render_template('Equipos/editarEquipo.html', equipo=equipo)
+@app.route('/equipos/modificar',methods=['POST'])
+def modificarEquipos():
+    e=Equipo()
+    e.idEquipo=request.form['idEquipo']
+    e.asesor = request.form['asesor']
+    e.integrante1 = request.form['integrante1']
+    e.integrante2 = request.form['integrante2']
+    e.integrante3 = request.form['integrante3']
+    e.nombre = request.form['nombre']
+    e.idCategoria = request.form['idCategoria']
+    e.puntos = request.form['puntos']
+    e.problemasResueltos = request.form['problemasResueltos']
+    e.actualizar()
+    return redirect(url_for('consultarEquipo'))
+@app.route('/equipos/delete/<int:id>')
+def eliminarEquipo(id):
+    e=Equipo()
+    e.idEquipo=id
+    e.eliminar()
+    return redirect(url_for("consultarEquipo"))
+#Fin CRUD Equipos
 
 #CRUD Docentes
 @app.route('/docentes/new')
