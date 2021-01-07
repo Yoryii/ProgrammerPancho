@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+    <script src="{{url_for('static',filename='JS/global.js')}}"></script>
+    <meta charset="UTF-8">
+    <title>Problemas</title>
+</head>
+<body>
+    <h1>Consultar Problemas</h1>
+    <a href="/problemas/new"><img src="{{url_for('static',filename='Imagenes/add.gif')}}">Registrar Problema</a>
+    <table border="1">
+        <th>IdProblema</th>
+        <th>Nombre</th>
+        <th>Puntos</th>
+        <th>TiempoMaximo</th>
+        <th>Descripcion</th>
+        <th>Modificar</th>
+        <th>Eliminar</th>
+        {% for p in problemas %}
+                <tr>
+                    <td>{{p.idProblema}}</td>
+                    <td>{{p.nombre}}</td>
+                    <td>{{p.puntos}}</td>
+                    <td>{{p.tiempoMax}}</td>
+                    <td>{{p.descripcion}}</td>
+                    <td><a href="/problemas/edit/{{p.idProblema}}"><img src="{{url_for('static',filename='Imagenes/editar.png')}}"></a></td>
+                    <td><a href="javascript:eliminarProblema({{p.idProblema}},'{{p.nombre}}')"><img src="{{url_for('static',filename='Imagenes/eliminar.png')}}"></a></td>
+                </tr>
+        {% endfor %}
+    </table>
+    <a href="javascript: history.go(-1)">Regresar</a>
+    <footer>
+        Elaborado por Royer
+    </footer>
+</body>
+</html>

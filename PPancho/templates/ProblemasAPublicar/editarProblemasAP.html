@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+        <meta charset="UTF-8">
+        <title>ProgrammerPancho</title>
+    </head>
+    <body>
+        <header>
+            INSTITUTO TECNOLOGICO DE ESTUDIOS SUPERIORES DE ZAMORA
+        </header>
+
+        <main>
+            <section>
+                <h1>EDITAR PROBLEMAS A PUBLICAR</h1>
+                <form action="/problemasAPublicar/modificar" method="post">
+                    <div id="datosproblema">
+                        <fieldset>
+                            <legend>Datos del Problema</legend>
+
+                               <label>IdProblema:</label>
+                               <input type="number" name="idProblemaAP" value="{{problemaAPublicar.idProblemaAP}}" required readonly>
+                               <br>
+                               <label>IdEdicion:</label>
+                               <input type="number" name="idEdicion" value="{{problemaAPublicar.idEdicion}}" required>
+                               <br>
+                               <label>IdCategoria:</label>
+                               <input type="number" name="idCategoria" value="{{problemaAPublicar.idCategoria}}" required>
+                               <br>
+                               <label>Color Globo:</label>
+                               <input type="text" name="colorGlobo" value="{{problemaAPublicar.colorGlobo}}" required>
+                               <br>
+                            <button type="submit">Guardar</button>
+                        </fieldset>
+                    </div>
+                </form>
+                <a href="javascript: history.go(-1)">Regresar</a>
+            </section>
+        </main>
+        <footer>
+            Elaborado por Royer
+        </footer>
+    </body>
+</html> 

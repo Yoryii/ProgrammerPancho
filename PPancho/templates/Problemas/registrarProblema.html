@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+        <script src="{{url_for('static',filename='JS/Problemas.js')}}"></script>
+        <meta charset="UTF-8">
+        <title>ProgrammerPancho</title>
+    </head>
+    <body>
+        <header>    
+            INSTITUTO TECNOLOGICO DE ESTUDIOS SUPERIORES DE ZAMORA
+        </header>
+
+        <main>
+            <section>
+                <h1>REGISTRO DE PROBLEMAS</h1>
+                <form onsubmit="return validar(this)" action="/problemas/save" method="post">
+                    <div id="datosproblema">
+                        <fieldset>
+                            <legend>Datos del Problema</legend>
+                               <label>Nombre:</label>
+                               <input type="text" name="nombre" required>
+                               <br>
+                               <label>Puntos:</label>
+                               <input type="number" name="puntos" required>
+                               <br>
+                               <label>Tiempo Maximo:</label>
+                               <input type="text" name="tiempoMax" placeholder="hh:mm"  required>
+                               <br>
+                               <label>Descripción</label>
+                               <input type="text" name="descripcion">
+                               <br>
+
+                            <button type="reset">Limpiar</button>
+                            <button type="submit">Guardar</button>
+                            <div id="notificaciones"></div>
+                        </fieldset>
+                    </div>
+                </form>
+                <a href="javascript: history.go(-1)">Regresar</a>
+            </section>
+        </main>
+        <footer>
+            Elaborado por Royer
+        </footer>
+    </body>
+</html> 

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+    <script src="{{url_for('static',filename='JS/global.js')}}"></script>
+    <meta charset="UTF-8">
+    <title>Ediciones</title>
+</head>
+<body>
+    <h1>Consultar Ediciones</h1>
+    <a href="/ediciones/new"><img src="{{url_for('static',filename='Imagenes/add.gif')}}">Registrar Ediciones</a>
+    <table border="1">
+        <th>IdEdicion</th>
+        <th>Nombre</th>
+        <th>Fecha Registro</th>
+        <th>Fecha Evento</th>
+        <th>Hora Inicio</th>
+        <th>Hora Fin</th>
+        <th>Modificar</th>
+        <th>Eliminar</th>
+        {% for e in ediciones %}
+                <tr>
+                    <td>{{e.idEdicion}}</td>
+                    <td>{{e.nombre}}</td>
+                    <td>{{e.fechaRegistro}}</td>
+                    <td>{{e.fechaEvento}}</td>
+                    <td>{{e.horaInicio}}</td>
+                    <td>{{e.horaFin}}</td>
+                    <td><a href="/ediciones/edit/{{e.idEdicion}}"><img src="{{url_for('static',filename='Imagenes/editar.png')}}"></a></td>
+                    <td><a href="javascript:eliminarEdicion({{e.idEdicion}},'{{e.nombre}}')"><img src="{{url_for('static',filename='Imagenes/eliminar.png')}}"></a></td>
+                </tr>
+        {% endfor %}
+    </table>
+    <a href="javascript: history.go(-1)">Regresar</a>
+    <footer>
+        Elaborado por Royer
+    </footer>
+</body>
+</html>

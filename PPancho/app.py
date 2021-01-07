@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, abort
 from modelo.models import db
-from modelo.models import Categoria, Carrera, Alumno, Usuario, Docente, Equipo
+from modelo.models import Categoria, Carrera, Alumno, Usuario, Docente, Equipo, Edicion, Problema, ProblemaResuelto, ProblemaAPublicar
 from flask_sqlalchemy import SQLAlchemy
 
 app=Flask(__name__)
@@ -65,6 +65,186 @@ def eliminarCategoria(id):
     c.eliminar()
     return redirect(url_for("consultarCategoria"))
 #Fin CRUD Categorias
+
+#CRUD Problemas a publicar
+@app.route('/problemasAPublicar/new')
+def nuevoProblemaAPublicar():
+    return render_template('ProblemasAPublicar/creacionProblemasAP.html')
+@app.route('/problemasAPublicar/save', methods=['POST'])
+def agregarProblemaAPublicar():
+    try:
+        ap=ProblemaAPublicar()
+        ap.idProblemaAP=request.form['idProblemaAP']
+        ap.idEdicion=request.form['idEdicion']
+        ap.idCategoria=request.form['idCategoria']
+        ap.colorGlobo=request.form['colorGlobo']
+        ap.insertar()
+        return redirect(url_for('consultarProblemaAPublicar'))
+    except:
+        abort(500)
+@app.route('/problemasAPublicar')
+def consultarProblemaAPublicar():
+    ap=ProblemaAPublicar()
+    problemasAPublicar=ap.consultaGeneral()
+    return render_template('ProblemasAPublicar/consultaProblemasAP.html', problemasAPublicar=problemasAPublicar)
+@app.route('/problemasAPublicar/edit/<int:id>')
+def editarProblemaAPublicar(id):
+    ap=ProblemaAPublicar()
+    ap.idProblemaAP=id
+    problemaAPublicar=ap.consultaIndividual()
+    return render_template('ProblemasAPublicar/editarProblemasAP.html', problemaAPublicar=problemaAPublicar)
+@app.route('/problemasAPublicar/modificar',methods=['POST'])
+def modificarProblemasAPublicar():
+    ap = ProblemaAPublicar()
+    ap.idProblemaAP = request.form['idProblemaAP']
+    ap.idEdicion = request.form['idEdicion']
+    ap.idCategoria = request.form['idCategoria']
+    ap.colorGlobo = request.form['colorGlobo']
+    ap.actualizar()
+    return redirect(url_for('consultarProblemaAPublicar'))
+@app.route('/problemasAPublicar/delete/<int:id>')
+def eliminarProblemaAPublicar(id):
+    ap=ProblemaAPublicar()
+    ap.idProblemaAP=id
+    ap.eliminar()
+    return redirect(url_for("consultarProblemaAPublicar"))
+#Fin CRUD Problemas a publicar
+
+#CRUD Problemas resueltos
+@app.route('/problemasResueltos/new')
+def nuevoProblemaResuelto():
+    return render_template('ProblemasResueltos/creacionProblemasR.html')
+@app.route('/problemasResueltos/save', methods=['POST'])
+def agregarProblemaResuelto():
+    try:
+        r=ProblemaResuelto()
+        r.idProblemaR=request.form['idProblemaR']
+        r.idEquipo=request.form['idEquipo']
+        r.tiempoEjecucion=request.form['tiempoEjecucion']
+        r.puntos=request.form['puntos']
+        r.insertar()
+        return redirect(url_for('consultarProblemaResuelto'))
+    except:
+        abort(500)
+@app.route('/problemasResueltos')
+def consultarProblemaResuelto():
+    r=ProblemaResuelto()
+    problemasResueltos=r.consultaGeneral()
+    return render_template('ProblemasResueltos/consultaProblemasR.html', problemasResueltos=problemasResueltos)
+@app.route('/problemasResueltos/edit/<int:id>')
+def editarProblemaResuelto(id):
+    r=ProblemaResuelto()
+    r.idProblemaR=id
+    problemaResuelto=r.consultaIndividual()
+    return render_template('ProblemasResueltos/editarProblemasR.html', problemaResuelto=problemaResuelto)
+@app.route('/problemasResueltos/modificar',methods=['POST'])
+def modificarProblemasResueltos():
+    r = ProblemaResuelto()
+    r.idProblemaR = request.form['idProblemaR']
+    r.idEquipo = request.form['idEquipo']
+    r.tiempoEjecucion = request.form['tiempoEjecucion']
+    r.puntos = request.form['puntos']
+    r.actualizar()
+    return redirect(url_for('consultarProblemaResuelto'))
+@app.route('/problemasResueltos/delete/<int:id>')
+def eliminarProblemaResuelto(id):
+    r=ProblemaResuelto()
+    r.idProblemaR=id
+    r.eliminar()
+    return redirect(url_for("consultarProblemaResuelto"))
+#Fin CRUD Problemas resueltos
+
+#CRUD Problemas
+@app.route('/problemas/new')
+def nuevoProblema():
+    return render_template('Problemas/registrarProblema.html')
+@app.route('/problemas/save', methods=['POST'])
+def agregarProblema():
+    try:
+        p=Problema()
+        p.nombre=request.form['nombre']
+        p.puntos=request.form['puntos']
+        p.tiempoMax=request.form['tiempoMax']
+        p.descripcion=request.form['descripcion']
+        p.insertar()
+        return redirect(url_for('consultarProblema'))
+    except:
+        abort(500)
+@app.route('/problemas')
+def consultarProblema():
+    p=Problema()
+    problemas=p.consultaGeneral()
+    return render_template('Problemas/consultaProblemas.html', problemas=problemas)
+@app.route('/problemas/edit/<int:id>')
+def editarProblema(id):
+    p=Problema()
+    p.idProblema=id
+    problema=p.consultaIndividual()
+    return render_template('Problemas/editarProblemas.html', problema=problema)
+@app.route('/problemas/modificar',methods=['POST'])
+def modificarProblemas():
+    p=Problema()
+    p.idProblema=request.form['idProblema']
+    p.nombre = request.form['nombre']
+    p.puntos = request.form['puntos']
+    p.tiempoMax = request.form['tiempoMax']
+    p.descripcion = request.form['descripcion']
+    p.actualizar()
+    return redirect(url_for('consultarProblema'))
+@app.route('/problemas/delete/<int:id>')
+def eliminarProblema(id):
+    p=Problema()
+    p.idProblema=id
+    p.eliminar()
+    return redirect(url_for("consultarProblema"))
+#Fin CRUD Problemas
+
+#CRUD Ediciones
+@app.route('/ediciones/new')
+def nuevaEdicion():
+    return render_template('Ediciones/RegistrarEdicions.html')
+@app.route('/ediciones/save', methods=['POST'])
+def agregarEdicion():
+    try:
+        e=Edicion()
+        e.nombre=request.form['nombre']
+        e.fechaRegistro=request.form['fechaRegistro']
+        e.fechaEvento=request.form['fechaEvento']
+        e.horaInicio=request.form['horaInicio']
+        e.horaFin=request.form['horaFin']
+        e.insertar()
+        return redirect(url_for('consultarEdicion'))
+    except:
+        abort(500)
+@app.route('/ediciones')
+def consultarEdicion():
+    e=Edicion()
+    ediciones=e.consultaGeneral()
+    return render_template('Ediciones/ConsultaEdiciones.html', ediciones=ediciones)
+@app.route('/ediciones/edit/<int:id>')
+def editarEdicion(id):
+    e=Edicion()
+    e.idEdicion=id
+    edicion=e.consultaIndividual()
+    return render_template('Ediciones/EditarEdiciones.html', edicion=edicion)
+@app.route('/ediciones/modificar',methods=['POST'])
+def modificarEdiciones():
+    e = Edicion()
+    e.idEdicion=request.form['idEdicion']
+    e.nombre = request.form['nombre']
+    e.fechaRegistro = request.form['fechaRegistro']
+    e.fechaEvento = request.form['fechaEvento']
+    e.horaInicio = request.form['horaInicio']
+    e.horaFin = request.form['horaFin']
+    e.actualizar()
+    return redirect(url_for('consultarEdicion'))
+@app.route('/ediciones/delete/<int:id>')
+def eliminarEdicion(id):
+    e=Edicion
+    e.idEdicion=id
+    e.eliminar()
+    return redirect(url_for("consultarEdicion"))
+#Fin CRUD Ediciones
 
 #CRUD Equipos
 @app.route('/equipos/new')

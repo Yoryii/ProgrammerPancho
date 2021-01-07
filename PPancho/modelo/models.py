@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Integer, String, Column, ForeignKey, CHAR
+from sqlalchemy import Integer, String, Column, ForeignKey, CHAR, Date, Time
 db=SQLAlchemy()
 
 class Carrera(db.Model):
@@ -136,3 +136,90 @@ class Equipo(db.Model):
         return self.query.all()
     def consultaIndividual(self):
         return self.query.get(self.idEquipo)
+
+class Edicion(db.Model):
+    __tablename__='Ediciones'
+    idEdicion=Column(Integer, primary_key=True)
+    nombre=Column(String, unique=True)
+    fechaRegistro=Column(Date)
+    fechaEvento=Column(Date)
+    horaInicio=Column(Time)
+    horaFin=Column(Time)
+    def insertar(self):
+        db.session.add(self)
+        db.session.commit()
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+    def eliminar(self):
+        edicion=self.consultaIndividual()
+        db.session.delete(edicion)
+        db.session.commit()
+    def consultaGeneral(self):
+        return self.query.all()
+    def consultaIndividual(self):
+        return self.query.get(self.idEdicion)
+
+class Problema(db.Model):
+    __tablename__='Problemas'
+    idProblema=Column(Integer, primary_key=True)
+    nombre=Column(String, unique=True)
+    puntos=Column(Integer)
+    tiempoMax=Column(String)
+    descripcion=Column(String)
+    def insertar(self):
+        db.session.add(self)
+        db.session.commit()
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+    def eliminar(self):
+        problema=self.consultaIndividual()
+        db.session.delete(problema)
+        db.session.commit()
+    def consultaGeneral(self):
+        return self.query.all()
+    def consultaIndividual(self):
+        return self.query.get(self.idProblema)
+
+class ProblemaResuelto(db.Model):
+    __tablename__='ProblemasResueltos'
+    idProblemaR=Column(Integer, primary_key=True)
+    idEquipo = Column(Integer, ForeignKey('Equipos.idEquipo'))
+    tiempoEjecucion=Column(String)
+    puntos=Column(Integer)
+    def insertar(self):
+        db.session.add(self)
+        db.session.commit()
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+    def eliminar(self):
+        problemaResuelto=self.consultaIndividual()
+        db.session.delete(problemaResuelto)
+        db.session.commit()
+    def consultaGeneral(self):
+        return self.query.all()
+    def consultaIndividual(self):
+        return self.query.get(self.idProblemaR)
+
+class ProblemaAPublicar(db.Model):
+    __tablename__='ProblemasAPublicar'
+    idProblemaAP=Column(Integer, primary_key=True)
+    idEdicion=Column(Integer, ForeignKey('Ediciones.idEdicion'))
+    idCategoria=Column(Integer, ForeignKey('Categorias.idCategoria'))
+    colorGlobo=Column(String)
+    def insertar(self):
+        db.session.add(self)
+        db.session.commit()
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+    def eliminar(self):
+        problemaAPublicar=self.consultaIndividual()
+        db.session.delete(problemaAPublicar)
+        db.session.commit()
+    def consultaGeneral(self):
+        return self.query.all()
+    def consultaIndividual(self):
+        return self.query.get(self.idProblemaAP)

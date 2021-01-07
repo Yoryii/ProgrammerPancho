@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+        <meta charset="UTF-8">
+        <title>ProgrammerPancho</title>
+    </head>
+    <body>
+        <header>
+            INSTITUTO TECNOLOGICO DE ESTUDIOS SUPERIORES DE ZAMORA
+        </header>
+
+        <main>
+            <section>
+                <h1>REGISTRAR EDICIONES</h1>
+                <form action="/ediciones/save" method="post">
+                    <div id="datosproblema">
+                        <fieldset>
+                            <legend>Datos de la Edicion</legend>
+                               <label>Nombre:</label>
+                               <input type="text" name="nombre" required>
+                               <br>
+                               <label>Fecha Registro:</label>
+                               <input type="date" name="fechaRegistro" required>
+                               <br>
+                               <label>Fecha Evento:</label>
+                               <input type="date" name="fechaEvento" required>
+                               <br>
+                               <label>Hora Inicio</label>
+                               <input type="time" name="horaInicio">
+                               <label>Hora Fin</label>
+                               <input type="time" name="horaFin">
+                               <br>
+                            <button type="reset">Limpiar</button>
+                            <button type="submit">Guardar</button>
+                        </fieldset>
+                    </div>
+                </form>
+                <a href="javascript: history.go(-1)">Regresar</a>
+            </section>
+        </main>
+        <footer>
+            Elaborado por Royer
+        </footer>
+    </body>
+</html> 

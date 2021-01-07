@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <link href="{{url_for('static',filename='CSS/estilo.css')}}" rel="stylesheet">
+        <script src="{{url_for('static',filename='JS/ProblemasResueltos.js')}}"></script>
+        <meta charset="UTF-8">
+        <title>ProgrammerPancho</title>
+    </head>
+    <body>
+        <header>
+            INSTITUTO TECNOLOGICO DE ESTUDIOS SUPERIORES DE ZAMORA
+        </header>
+
+        <main>
+            <section>
+                <h1>EDITAR PROBLEMAS Resueltos</h1>
+                <form onsubmit="return validar(this)" action="/problemasResueltos/modificar" method="post">
+                    <div id="datosproblema">
+                        <fieldset>
+                            <legend>Datos del Problema</legend>
+
+                               <label>IdProblema:</label>
+                               <input type="number" name="idProblemaR" value="{{problemaResuelto.idProblemaR}}" required readonly>
+                               <br>
+                               <label>IdEqipo:</label>
+                               <input type="number" name="idEquipo" value="{{problemaResuelto.idEquipo}}" required>
+                               <br>
+                               <label>Tiempo Ejecucion:</label>
+                               <input type="text" name="tiempoEjecucion" placeholder="hh:mm" value="{{problemaResuelto.tiempoEjecucion}}" required>
+                               <br>
+                               <label>Puntos:</label>
+                               <input type="number" name="puntos" value="{{problemaResuelto.puntos}}" required>
+                               <br>
+                            <button type="submit">Guardar</button>
+                            <div id="notificaciones"></div>
+                        </fieldset>
+                    </div>
+                </form>
+                <a href="javascript: history.go(-1)">Regresar</a>
+            </section>
+        </main>
+        <footer>
+            Elaborado por Royer
+        </footer>
+    </body>
+</html> 
